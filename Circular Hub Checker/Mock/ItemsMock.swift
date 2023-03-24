@@ -21,5 +21,5 @@ struct ItemsMock {
     
     static var item = Item(id: 23, title: "Prueba", description: "prueba", price: 234, heroImage: "https://www.ikea.com/es/es/images/products/valevag-colchon-muelles-ensacados-firme-azul-claro__1150856_pe884904_s4.jpg", articlesPrice: 234, currency: "EUR", priority: nil)
     
-    static var itemDetail = ItemDetail(id: 23, unitID: "2342134", countryCode: "ES", langCode: "ES", title: "SADIS", description: "Ninguna", price: 23, images: [], state: .published, tagID: "23", articles: [], uploads: [], itemTranslations: [])
+//    static var itemDetail = ItemDetail(id: 23, unitID: "2342134", countryCode: "ES", langCode: "ES", title: "SADIS", description: "Ninguna", price: 23, images: [], state: .published, tagID: "23", articles: [], uploads: [], itemTranslations: [])
 }

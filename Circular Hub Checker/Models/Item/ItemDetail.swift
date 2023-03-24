@@ -15,31 +15,41 @@ enum ItemState: String, Codable {
 // MARK: - ItemDetailResponse
 struct ItemDetailResponse: Codable {
     let id: Int
-    let unitID, countryCode, langCode, title: String
+    let unitID: String
+    let countryCode: String
+    let langCode: String
+    let title: String
     let description: String
     let price: Double
-    let images: [Image]
+    let images: [ItemImage]
     let state: ItemState
     let tagID: String
     let articles: [Article]
     let uploads: [Upload]
-    let itemTranslations: [ItemTranslation]
+    let benefits: String?
+    let benefitSummary: String?
+    let designers: String?
+    let goodToKnows: String?
+    let materials: String?
+    let careInstructions: String?
+//    let itemTranslations: [ItemTranslation]
     
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, title, description, price, images, state, articles, uploads, materials, benefits, designers
         case unitID = "unitId"
         case countryCode = "country_code"
         case langCode = "lang_code"
-        case title, description, price, images, state
+        case goodToKnows = "good_to_knows"
         case tagID = "tagId"
-        case articles, uploads, itemTranslations
+        case careInstructions = "care_instructions"
+        case benefitSummary = "benefit_summary"
     }
 }
 
 // MARK: - Article
 struct Article: Codable {
     let id: Int
-    let langCode: String
+    let langCode: String?
     let title: String?
     let description: String
     let price: Double
@@ -47,7 +57,7 @@ struct Article: Codable {
     let articleID: String
     let iowsImages: String?
     let currencyCode: String
-    let articleTranslations: [ArticleTranslation]
+    let articleTranslations: [ArticleTranslation]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -62,11 +72,11 @@ struct Article: Codable {
 
 // MARK: - ArticleTranslation
 struct ArticleTranslation: Codable {
-    let id, articleID: Int
+    let id, articleID: Int?
     let title: String?
-    let description: String
-    let languageID: Int
-    let byDefault: Bool
+    let description: String?
+    let languageID: Int?
+    let byDefault: Bool?
     let benefits, benefitSummary, designers, goodToKnows: String?
     let materials, careInstructions: String?
     
@@ -86,10 +96,10 @@ struct ArticleTranslation: Codable {
 }
 
 // MARK: - Image
-struct Image: Codable, Identifiable {
-    let id: Int
+struct ItemImage: Codable, Identifiable {
+    let id: Int?
     let url: String
-    let displayOrder: Int
+    let displayOrder: Int?
     
     enum CodingKeys: String, CodingKey {
         case id, url
@@ -99,10 +109,10 @@ struct Image: Codable, Identifiable {
 
 // MARK: - ItemTranslation
 struct ItemTranslation: Codable {
-    let id, itemID: Int
-    let title, description: String
-    let languageID: Int
-    let byDefault: Bool
+    let id, itemID: Int?
+    let title, description: String?
+    let languageID: Int?
+    let byDefault: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -115,12 +125,12 @@ struct ItemTranslation: Codable {
 
 // MARK: - Upload
 struct Upload: Codable {
-    let id: Int
-    let domain: String
-    let container, countryCode, name: String
+    let id: Int?
+    let domain: String?
+    let container, countryCode, name: String?
     let langCode: JSONNull?
-    let notes: String
-    let uploadedNotes: [UploadedNote]
+    let notes: String?
+    let uploadedNotes: [UploadedNote]?
     
     enum CodingKeys: String, CodingKey {
         case id, domain, container
@@ -133,9 +143,9 @@ struct Upload: Codable {
 
 // MARK: - UploadedNote
 struct UploadedNote: Codable {
-    let id, uploadID, languageID: Int
-    let notes: String
-    let byDefault: Bool
+    let id, uploadID, languageID: Int?
+    let notes: String?
+    let byDefault: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id

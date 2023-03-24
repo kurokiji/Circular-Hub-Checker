@@ -40,8 +40,8 @@ struct ItemDetailsView: View {
     }
 }
 
-struct ItemDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemDetailsView(listItem: ItemsMock.item, itemDetail: ItemsMock.itemDetail)
-    }
-}
+//struct ItemDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ItemDetailsView(listItem: ItemsMock.item, itemDetail: ItemsMock.itemDetail)
+//    }
+//}
