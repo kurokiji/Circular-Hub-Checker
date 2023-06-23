@@ -30,6 +30,13 @@ struct ItemDetailsView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if let link = URL(string: "https://www.ikea.com/es/es/customer-service/services/buy-back/tienda-de-segunda-mano-ikea-pub8ed94ff0#/\(listItem.id)?store=\(listItem.store)") {
+                    ShareLink(item: link, message: Text("Mira que artículo he encontrado"))
+                }
+            }
+        }
         .onAppear() {
             viewModel.fetchItemDetails(itemID: listItem.id) { response in
                 itemDetail = response

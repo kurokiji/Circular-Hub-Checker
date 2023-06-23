@@ -20,8 +20,7 @@ struct StoreView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 if viewModel.items.isEmpty && !isLoading && !errorDownloading {
-                        NoItemsView(description: "No se han encontrado resultados para tu búsqueda")
-                        .padding(.top, 10)
+                    NoItemsView(description: "No se han encontrado resultados para tu búsqueda")
                 }
                 if viewModel.newItems.count > 0 {
                     Text("Nuevos")

@@ -97,7 +97,7 @@ struct ArticleTranslation: Codable {
 
 // MARK: - Image
 struct ItemImage: Codable, Identifiable {
-    let id: Int?
+    let id = UUID()
     let url: String
     let displayOrder: Int?
     

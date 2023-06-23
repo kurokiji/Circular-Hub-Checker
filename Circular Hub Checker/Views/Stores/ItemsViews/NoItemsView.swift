@@ -29,7 +29,7 @@ struct NoItemsView: View {
     }
 }
 
-struct NoFavoriteItemsView_Previews: PreviewProvider {
+struct NoItemsView_Previews: PreviewProvider {
     static var previews: some View {
         NoItemsView(image: "Appreciation-rafiki", description: "Añade algún favorito desde cualquiera de las tiendas")
     }

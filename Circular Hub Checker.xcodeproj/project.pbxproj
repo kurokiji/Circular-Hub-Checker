@@ -715,7 +715,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Circular Hub Checker/Preview Content\"";
-				DEVELOPMENT_TEAM = T5VP23SVD3;
+				DEVELOPMENT_TEAM = 35YV6W556V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Circular-Hub-Checker-Info.plist";
@@ -745,7 +745,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Circular Hub Checker/Preview Content\"";
-				DEVELOPMENT_TEAM = T5VP23SVD3;
+				DEVELOPMENT_TEAM = 35YV6W556V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Circular-Hub-Checker-Info.plist";

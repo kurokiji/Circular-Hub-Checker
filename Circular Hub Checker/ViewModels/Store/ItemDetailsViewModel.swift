@@ -39,6 +39,7 @@ class ItemDetailsViewModel {
     
     func openReservePageInSafari(item: Item, storeID: String) {
         if let url = URL(string: "https://www.ikea.com/es/es/customer-service/services/buy-back/tienda-de-segunda-mano-ikea-pub8ed94ff0#\(storeID)/\(item.id)") {
+            print("ARTICLE", url)
             UIApplication.shared.open(url)
         }
     }

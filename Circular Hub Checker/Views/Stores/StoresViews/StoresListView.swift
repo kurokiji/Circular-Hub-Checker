@@ -21,35 +21,33 @@ struct StoresListView: View {
             List {
                 ForEach(stores) { store in
                     NavigationLink {
-                        if let store = store {
-                            StoreView(viewModel: StoreViewModelImpl(store: store))
-                                .navigationTitle(Text(store.name))
-                        }
+                        StoreView(viewModel: StoreViewModelImpl(store: store))
+                            .navigationTitle(Text(store.name))
                     } label: {
                         HStack {
-//                            Button {
-//                                viewModel.addToFavorites(store, favoriteStores: favoriteStores)
-//                            } label: {
-//                                Label("Icon Only", systemImage: favoriteStores.contains(store) ? "heart.fill" : "heart")
-//                                    .font(.title2)
-//                                    .labelStyle(.iconOnly)
-//                            }
-//                            .buttonStyle(.borderless)
-//                            .padding(.vertical, 7)
-//                            .padding(.trailing, 5)
+                            //                            Button {
+                            //                                viewModel.addToFavorites(store, favoriteStores: favoriteStores)
+                            //                            } label: {
+                            //                                Label("Icon Only", systemImage: favoriteStores.contains(store) ? "heart.fill" : "heart")
+                            //                                    .font(.title2)
+                            //                                    .labelStyle(.iconOnly)
+                            //                            }
+                            //                            .buttonStyle(.borderless)
+                            //                            .padding(.vertical, 7)
+                            //                            .padding(.trailing, 5)
                             Text(store.name)
                                 .font(.title3)
                             Spacer()
-//                            if favoriteStores.contains(store) {
-//                                Text("3")
-//                                    .foregroundColor(.white)
-//                                    .background {
-//                                        Circle()
-//                                            .foregroundColor(.gray)
-//                                            .frame(width: 25, height: 25)
-//                                    }
-//                                    .padding(.horizontal, 10)
-//                            }
+                            //                            if favoriteStores.contains(store) {
+                            //                                Text("3")
+                            //                                    .foregroundColor(.white)
+                            //                                    .background {
+                            //                                        Circle()
+                            //                                            .foregroundColor(.gray)
+                            //                                            .frame(width: 25, height: 25)
+                            //                                    }
+                            //                                    .padding(.horizontal, 10)
+                            //                            }
                         }
                     }
                 }

@@ -31,4 +31,7 @@ struct ImagesCarousselView: View {
             })
         }
     }
+    func dale(url: String) {
+        print(url)
+    }
 }
