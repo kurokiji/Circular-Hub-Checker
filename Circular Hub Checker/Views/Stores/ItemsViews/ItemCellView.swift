@@ -20,7 +20,12 @@ struct ItemCellView: View {
                             .aspectRatio(contentMode: .fit)
                     },
                     placeholder: {
-                        ProgressView()
+                        Image(systemName: "table.furniture")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: 100)
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(.gray)
                     }
                 )
                 .frame(minWidth: 180, minHeight: 180)
@@ -33,10 +38,17 @@ struct ItemCellView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Text(item.getFormattedPrice(price: item.price) ?? "0")
-                            .foregroundColor(colorScheme == .dark ? .white : .black)
-                            .padding(10)
-                            .background(Material.ultraThin, in: RoundedRectangle(cornerRadius: 10.0))
+                        if let price = item.getFormattedPrice(price: item.price) {
+                            Text(price)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                                .padding(10)
+                                .background(Material.ultraThin, in: RoundedRectangle(cornerRadius: 10.0))
+                        } else {
+                            Text("Precio no informado")
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                                .padding(10)
+                                .background(Material.ultraThin, in: RoundedRectangle(cornerRadius: 10.0))
+                        }    
                     }
                     .padding(10)
                 }
