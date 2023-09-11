@@ -27,11 +27,16 @@ protocol StoreViewModel: ObservableObject {
 class StoreViewModelImpl: StoreViewModel {
     @Published var items: [Item]
     @Published var newItems: [Item]
+    @Published var isLoading: Bool
+    @Published var errorDownloading: Bool
+    @Published var searchTerm: String
     var itemsBackUp: [Item]
     var itemsChecker: ItemsChecker
     var store: Store
     
-    var searchTerm: String
+    var thereIsNewItems: Bool {
+        !newItems.isEmpty
+    }
     
     init(store: Store) {
         self.itemsChecker = ItemsChecker(store: store)
@@ -39,10 +44,12 @@ class StoreViewModelImpl: StoreViewModel {
         items = []
         newItems = []
         itemsBackUp = []
+        isLoading = true
+        errorDownloading = false
         searchTerm = ""
     }
     
-    func getItems(completionSuccess: @escaping ()-> Void, completonError: @escaping() -> Void) {
+    func downloadItems(completionSuccess: @escaping ()-> Void, completonError: @escaping() -> Void) {
         itemsChecker.getItems { [weak self] newItems, allItems in
             self?.items = allItems
             self?.newItems = newItems
@@ -68,6 +75,19 @@ class StoreViewModelImpl: StoreViewModel {
             return
         }
         items = itemsBackUp.filter { $0.title.localizedCaseInsensitiveContains(term) || $0.description.localizedCaseInsensitiveContains(term) }
+    }
+    
+    func getItemsIfNecesary() {
+        if itemsBackUp.isEmpty {
+            isLoading = true
+            errorDownloading = false
+            downloadItems { [weak self] in
+                self?.isLoading = false
+            } completonError: {
+                self.isLoading = false
+                self.errorDownloading = true
+            }
+        }
     }
 }
 

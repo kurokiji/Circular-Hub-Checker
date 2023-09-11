@@ -13,67 +13,59 @@ struct StoreView: View {
     @StateObject var viewModel: StoreViewModelImpl
     
     @State private var searchText = ""
-    @State var errorDownloading: Bool = false
-    @State var isLoading: Bool = true
+    
+    let noItemsMessage: String = "No se han encontrado resultados para tu búsqueda"
+    let allItemsMessage: String = "Todos los artículos"
+    let newItemsMessage: String = "Artículos nuevos"
+    let downloadingMessage: String = "Descargando"
+    let errorMessage: String = "Error"
+    let rechargeMessage: String = "Toca para recargar"
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                if viewModel.items.isEmpty && !isLoading && !errorDownloading {
-                        NoItemsView(description: "No se han encontrado resultados para tu búsqueda")
+                if viewModel.items.isEmpty
+                    && !viewModel.isLoading
+                    && !viewModel.errorDownloading {
+                        NoItemsView(description: noItemsMessage)
                         .padding(.top, 10)
-                }
-                if viewModel.newItems.count > 0 {
-                    Text("Nuevos")
+                } else if !viewModel.newItems.isEmpty {
+                    Text(newItemsMessage)
                         .font(.title)
                         .bold()
                         .padding(10)
                     ItemsGridView(items: viewModel.newItems, store: viewModel.store)
-                    Text("Todos")
+                    Text(allItemsMessage)
                         .font(.title)
                         .bold()
                         .padding(10)
                 }
+                
                 ItemsGridView(items: viewModel.items, store: viewModel.store)
             }
-            .searchable(text: $searchText)
-            .onChange(of: searchText) { newSearchTerm in
+            .searchable(text: $viewModel.searchTerm)
+            .onChange(of: viewModel.searchTerm) { newSearchTerm in
                 viewModel.searchItems(by: newSearchTerm)
             }
         }
         .onAppear() {
-            getItems()
+            viewModel.getItemsIfNecesary()
         }
-        .toast(isPresenting: $isLoading) {
-            AlertToast(type: .loading, title: "Descargando", subTitle: nil)
+        .toast(isPresenting: $viewModel.isLoading) {
+            AlertToast(type: .loading, title: downloadingMessage, subTitle: nil)
         }
-        .toast(isPresenting: $errorDownloading, duration: .infinity, tapToDismiss: true, alert: {
-            AlertToast(type: .error(.red), title: "Error", subTitle: "Toca para recargar")
+        .toast(isPresenting: $viewModel.errorDownloading, duration: .infinity, tapToDismiss: true, alert: {
+            AlertToast(type: .error(.red), title: errorMessage, subTitle: rechargeMessage)
         }, onTap: {
-            getItems()
-        }, completion: {
-            isLoading = true
-            errorDownloading = false
+            viewModel.getItemsIfNecesary()
         })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if !isLoading && !errorDownloading {
+                if !viewModel.isLoading && !viewModel.errorDownloading {
                     SortItemsMenuView(viewModel: viewModel)
                 } else {
                     ProgressView()
                 }
-            }
-        }
-    }
-    
-    func getItems() {
-        if viewModel.itemsBackUp.isEmpty {
-            isLoading = true
-            viewModel.getItems {
-                isLoading = false
-            } completonError: {
-                isLoading = false
-                errorDownloading = true
             }
         }
     }
