@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ItemDetailsView: View {
     @Environment(\.openURL) var openURL
-    var listItem: Item
     @State var itemDetail: ItemDetail?
+    var listItem: Item
     let viewModel: ItemDetailsViewModel = ItemDetailsViewModel()
     
     var body: some View {
@@ -40,8 +40,8 @@ struct ItemDetailsView: View {
     }
 }
 
-//struct ItemDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemDetailsView(listItem: ItemsMock.item, itemDetail: ItemsMock.itemDetail)
-//    }
-//}
+struct ItemDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ItemDetailsView(itemDetail: ItemsMock.itemDetail, listItem: ItemsMock.item)
+    }
+}
