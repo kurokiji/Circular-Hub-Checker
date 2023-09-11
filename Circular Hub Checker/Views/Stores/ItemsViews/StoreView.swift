@@ -38,7 +38,7 @@ struct StoreView: View {
             }
             .searchable(text: $searchText)
             .onChange(of: searchText) { newSearchTerm in
-                viewModel.searchItems(with: newSearchTerm)
+                viewModel.searchItems(by: newSearchTerm)
             }
         }
         .onAppear() {

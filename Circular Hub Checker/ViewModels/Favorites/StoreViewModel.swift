@@ -58,7 +58,7 @@ class StoreViewModelImpl: StoreViewModel {
         newItems = []
     }
     
-    func searchItems(with term: String) {
+    func searchItems(by term: String) {
         if !newItems.isEmpty {
             items = itemsBackUp
             newItems.removeAll()
@@ -67,7 +67,7 @@ class StoreViewModelImpl: StoreViewModel {
             items = itemsBackUp
             return
         }
-        items = itemsBackUp.filter { $0.title.localizedCaseInsensitiveContains(term) }
+        items = itemsBackUp.filter { $0.title.localizedCaseInsensitiveContains(term) || $0.description.localizedCaseInsensitiveContains(term) }
     }
 }
 
