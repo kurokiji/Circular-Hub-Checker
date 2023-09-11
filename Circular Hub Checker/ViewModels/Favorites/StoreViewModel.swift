@@ -67,7 +67,7 @@ class StoreViewModelImpl: StoreViewModel {
             items = itemsBackUp
             return
         }
-        items = itemsBackUp.filter { $0.title.localizedCaseInsensitiveContains(term) }
+        items = itemsBackUp.filter { $0.title.localizedCaseInsensitiveContains(term) || $0.description.localizedStandardContains(term) }
     }
 }
 
