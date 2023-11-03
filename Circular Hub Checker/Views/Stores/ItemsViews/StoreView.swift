@@ -19,10 +19,6 @@ struct StoreView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                if viewModel.items.isEmpty && !isLoading && !errorDownloading {
-                        NoItemsView(description: "No se han encontrado resultados para tu búsqueda")
-                        .padding(.top, 10)
-                }
                 if viewModel.newItems.count > 0 {
                     Text("Nuevos")
                         .font(.title)
@@ -39,6 +35,12 @@ struct StoreView: View {
             .searchable(text: $searchText)
             .onChange(of: searchText) { newSearchTerm in
                 viewModel.searchItems(by: newSearchTerm)
+            }
+        }
+        .overlay {
+            if viewModel.items.isEmpty && !isLoading && !errorDownloading {
+                    NoItemsView(description: "No se han encontrado resultados para tu búsqueda")
+                    .padding(.top, 10)
             }
         }
         .onAppear() {
