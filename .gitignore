@@ -1,2 +1,19 @@
+!.gitkeep
+*.pbxuser
+**/.DS_Store
+*.xcarchive
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
 
-Circular Hub Checker.xcodeproj/project.xcworkspace/xcuserdata/danieltorres.xcuserdatad/UserInterfaceState.xcuserstate
+timeline.xctimeline
+playground.xcworkspace
+.build/
+build/
+xcuserdata/
+DerivedData/
